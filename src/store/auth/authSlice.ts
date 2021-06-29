@@ -14,8 +14,8 @@ const initialState: AuthState = {
   /**
    * @deprecated This hard code userID property value will be removing in future
    */
-  // userID: process.env.REACT_APP_TEMPORARY_USER_ID as string,
-  userID: null,
+  userID: process.env.REACT_APP_TEMPORARY_USER_ID as string,
+  // userID: null,
   isLoading: false,
 };
 
