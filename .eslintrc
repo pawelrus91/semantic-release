@@ -1,0 +1,149 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.json",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "plugins": ["@typescript-eslint"],
+  "extends": [
+    "airbnb", 
+    "airbnb/hooks",
+    "prettier",
+    "plugin:prettier/recommended"
+  ],
+  "env": {
+    "jest": true
+  },
+  "globals": {
+    "document": true,
+    "window": true
+  },
+  "overrides": [
+    {
+      "files": [
+        "src/**/*.ts", 
+        "src/**/*.tsx"
+      ],
+      "extends": [
+        "plugin:@typescript-eslint/recommended",
+        "plugin:@typescript-eslint/recommended-requiring-type-checking"
+      ],
+      "rules": {
+        "no-unused-vars": 0,
+        "@typescript-eslint/no-unused-vars": [2],
+        "@typescript-eslint/explicit-module-boundary-types": 0,
+        "lines-between-class-members": [2, "always", { "exceptAfterSingleLine": true }],
+        "import/order": 
+        [
+          2, 
+          {
+            "groups": [
+              ["builtin", "external"], 
+              ["unknown", "internal", "parent", "sibling", "index"], 
+              ["object", "type"]
+            ],
+            "pathGroups": [
+              {
+                "pattern": "testUtils/**",
+                "group": "external"
+              },
+              {
+                "pattern": "testUtils",
+                "group": "external"
+              }
+            ],
+            "newlines-between": "always-and-inside-groups",
+            "alphabetize": {
+              "order": "asc",
+              "caseInsensitive": true
+            }
+          }
+        ]
+      } 
+    },
+    {
+      "files": [
+        "*.stories.js", 
+        "*.stories.ts?(x)"
+      ],
+      "rules": {
+          "react/prop-types": 0,
+          "react/jsx-props-no-spreading": 0
+      }
+    },
+    {
+      "files": [
+        "src/**/__tests__/**/*.js",
+        "src/**/?(*.)+(spec|test).js",
+        "src/**/__tests__/**/*.ts?(x)",
+        "src/**/?(*.)+(spec|test).ts?(x)"
+      ],
+      "extends": [
+        "plugin:jest/style", 
+        "plugin:jest-formatting/strict", 
+        "plugin:testing-library/react", 
+        "plugin:jest-dom/recommended"
+      ],
+      "rules": {
+          "react/jsx-props-no-spreading": 0,
+          "@typescript-eslint/no-unsafe-member-access": 0,
+          "@typescript-eslint/no-unsafe-call": 0
+      }
+    },
+    {
+      "files": [
+        "src/**/*Slice.ts"
+      ],
+      "rules": {
+        "no-param-reassign": [
+          2,
+          { 
+            "props": true, 
+            "ignorePropertyModificationsFor": ["state"]
+           }
+        ]
+      }
+    }
+  ],
+  "rules": {
+    "import/extensions": [
+      2,
+      "ignorePackages",
+      {
+        "js": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
+    ],
+    "import/no-extraneous-dependencies": 0,
+    "import/prefer-default-export": 0,
+    "react/jsx-filename-extension": [
+      1, 
+      { 
+        "extensions": [
+          ".js", 
+          ".tsx"
+        ] 
+      }
+    ],
+    "react/react-in-jsx-scope": 0,
+    "react/state-in-constructor": [2, "never"]
+  },
+  "ignorePatterns": [".eslintrc"],
+  "settings": {
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx"]
+    },
+    "import/resolver": {
+      "typescript": {
+        "project": "./tsconfig.json"
+      },
+      "node": {
+        "paths": ["src"],
+        "extensions": [".js", ".jsx"]
+      }
+    }
+  }
+}
